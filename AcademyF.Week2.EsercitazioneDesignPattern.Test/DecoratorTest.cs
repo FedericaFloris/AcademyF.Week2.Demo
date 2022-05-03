@@ -115,5 +115,61 @@ namespace AcademyF.Week2.EsercitazioneDesignPattern.Test
             Assert.Contains("H123", benefit);
             Assert.Contains("WE4889", benefit);
         }
+
+        [Fact]
+        public void ShouldHaveTicketRestaurantNullForEmployee()
+        {
+            //Per impiegati caratterizzati dal benefit ticket restaurant voglio che
+            //il codice dell'assistenza sia non nullo o diverso da stringa vuota
+
+            //ARRANGE
+            Employee employee = new Employee
+            {
+                FirstName = "Mario",
+                LastName = "Rossi"
+            };
+
+            //Creo il componente in grado di arricchire l'impiegato con il benefit
+            //posto auto
+            employee = new EmployeeTicketRestaurant(employee, "CY778",8);
+
+            //ACT
+            string benefit = employee.ViewBenefit();
+
+            //ASSERT
+            Assert.NotEqual("", benefit); //VALIDO MA NON PERFETTAMENTE COMPRENSIBILE
+            Assert.True(!string.IsNullOrEmpty(benefit));
+            Assert.Contains("CY778", benefit);
+            
+            
+        }
+        [Fact]
+        public void ShouldHaveCarCompanyNullForEmployee()
+        {
+            //Per impiegati caratterizzati dal benefit ticket restaurant voglio che
+            //il codice dell'assistenza sia non nullo o diverso da stringa vuota
+
+            //ARRANGE
+            Employee employee = new Employee
+            {
+                FirstName = "Mario",
+                LastName = "Rossi"
+            };
+
+            //Creo il componente in grado di arricchire l'impiegato con il benefit
+            //posto auto
+            employee = new EmployeeCarCompany(employee, "CY778", "Panda");
+
+            //ACT
+            string benefit = employee.ViewBenefit();
+
+            //ASSERT
+            Assert.NotEqual("", benefit); //VALIDO MA NON PERFETTAMENTE COMPRENSIBILE
+            Assert.True(!string.IsNullOrEmpty(benefit));
+            Assert.Contains("CY778", benefit);
+            Assert.Contains("Panda", benefit);
+
+
+        }
     }
 }
